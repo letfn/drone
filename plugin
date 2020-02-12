@@ -3,7 +3,8 @@
 function main {
   case "${PLUGIN_TASK:-}" in
     fmt)
-      drone fmt > /tmp/.drone.yml
+      drone fmt 2>&1 > /tmp/.drone.yml
+      diff .drone.yml /tmp/.drone.yml
       ;;
     lint)
       drone lint

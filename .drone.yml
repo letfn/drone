@@ -51,7 +51,7 @@ platform:
 
 steps:
 - name: everything
-  image: letfn/dronr
+  image: letfn/drone
   settings:
     task: lint
 
@@ -72,6 +72,5 @@ steps:
   image: letfn/drone-hugo
   settings:
     github_pages: true
-
 
 ...

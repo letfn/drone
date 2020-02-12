@@ -15,7 +15,7 @@ WORKDIR /drone/src
 COPY --from=download /usr/local/bin/drone /usr/local/bin/drone
 
 USER root
-RUN apt-get update && apt-get upgrade -y
+RUN apk update
 
 COPY plugin /plugin
 

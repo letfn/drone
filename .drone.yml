@@ -11,13 +11,13 @@ steps:
 - name: everything
   image: letfn/drone-kaniko
   settings:
-    args: --destination=letfn/container
+    args: --destination=letfn/drone
     cache: true
     cache_repo: defn/cache
     dockerfile: alt/Dockerfile
     password:
       from_secret: docker_password
-    repo: letfn/container
+    repo: letfn/drone
     skip_tls_verify: true
     tag: latest
     username:
@@ -36,9 +36,9 @@ platform:
 
 steps:
 - name: everything
-  image: letfn/container
-  commands:
-  - drone fmt --save
+  image: letfn/drone
+  settings:
+    task: fmt
 
 ---
 kind: pipeline
@@ -51,9 +51,9 @@ platform:
 
 steps:
 - name: everything
-  image: letfn/container
-  commands:
-  - drone lint
+  image: letfn/dronr
+  settings:
+    task: lint
 
 ---
 kind: pipeline

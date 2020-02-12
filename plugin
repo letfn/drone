@@ -1,9 +1,18 @@
 #!/usr/bin/env bash
 
 function main {
-  set -exfu
-
-  exec "$@"
+  case "${PLUGIN_TASK:-}" in
+    fmt)
+      drone fmt > /tmp/.drone.yml
+      ;;
+    lint)
+      drone lint
+      ;;
+    *)
+      echo "ERROR: unknown task setting: ${PLUGIN_TASK:-}" 1>&2
+      return 1
+      ;;
+  esac
 }
 
 main "$@"

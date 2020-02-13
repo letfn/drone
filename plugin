@@ -5,8 +5,17 @@ function main {
     fmt)
       cp .drone.yml /tmp/.drone.yml
       drone fmt --save /tmp/.drone.yml
-      diff .drone.yml /tmp/.drone.yml
+      if diff .drone.yml /tmp/.drone.yml; then
+        return 0
+      fi
+
+      if [[ -w .drone.yml ]]; then
+        drone fmt --save
+      fi
+
+      return 1
       ;;
+
     lint)
       drone lint
       ;;

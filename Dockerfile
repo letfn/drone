@@ -1,8 +1,10 @@
 FROM letfn/container AS download
 
-RUN root
+ARG _DRONE_VERSION=v1.2.1
 
-RUN curl -sSL -O https://github.com/drone/drone-cli/releases/download/v1.2.1/drone_linux_amd64.tar.gz \
+USER root
+
+RUN curl -sSL -O https://github.com/drone/drone-cli/releases/download/${_DRONE_VERSION}/drone_linux_amd64.tar.gz \
   && tar xvfz drone_linux_amd64.tar.gz \
   && rm -f drone_linux_amd64.tar.gz \
   && chmod 755 drone \
@@ -14,11 +16,6 @@ WORKDIR /drone/src
 
 COPY --from=download /usr/local/bin/drone /usr/local/bin/drone
 
-USER root
-RUN apk update
-
 COPY plugin /plugin
-
-USER app
 
 ENTRYPOINT [ "/tini", "--", "/plugin" ]

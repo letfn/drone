@@ -38,7 +38,7 @@ platform:
   arch: amd64
 
 steps:
-- name: everything
+- name: kaniko
   image: letfn/drone-kaniko
   settings:
     args: --destination=letfn/drone
@@ -51,8 +51,6 @@ steps:
     tag: latest
     username:
       from_secret: docker_username
-  environment:
-    BENCHMARK_FILE: /drone/src/benchmark/build.json
 
 depends_on:
 - fmt

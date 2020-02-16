@@ -11,8 +11,6 @@ RUN curl -sSL -O https://github.com/drone/drone-cli/releases/download/${_DRONE_V
 
 FROM letfn/container
 
-WORKDIR /drone/src
-
 COPY --from=download /tmp/drone /usr/local/bin/drone
 
 COPY plugin /plugin

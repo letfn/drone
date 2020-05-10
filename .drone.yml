@@ -80,22 +80,25 @@ depends_on:
 ---
 kind: secret
 name: docker_username
+
 get:
- path: kv/data/drone/common
- name: docker_username
+  path: kv/data/drone/common
+  name: docker_username
 
 ---
 kind: secret
 name: docker_password
+
 get:
- path: kv/data/drone/common
- name: docker_password
+  path: kv/data/drone/common
+  name: docker_password
 
 ---
 kind: secret
 name: github_token
+
 get:
- path: kv/data/drone/common
- name: github_token
+  path: kv/data/drone/common
+  name: github_token
 
 ...

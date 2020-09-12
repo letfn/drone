@@ -10,7 +10,7 @@ function main {
       fi
 
       if [[ -w .drone.yml ]]; then
-        drone fmt --save
+        cp /tmp/.drone.yml .
       fi
 
       return 1
